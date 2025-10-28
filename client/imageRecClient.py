@@ -1,4 +1,4 @@
-fileName = "captured_frame.jpg"
+fileName = "images/captured_frame.jpg"
 import os
 import json
 import subprocess

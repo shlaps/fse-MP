@@ -1,12 +1,7 @@
 import subprocess
-import sys
-import os
-import time
-
-import argparse	
 import cv2
 
-IMAGE_PATH = "captured_image.jpg"
+IMAGE_PATH = "images/captured_image.jpg"
 RESOLUTION = "640x480"       
 
 def capture_image(path: str):

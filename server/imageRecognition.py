@@ -4,11 +4,7 @@ import base64
 import cv2
 import camtest
 from flask import jsonify
-from threading import Thread
 import os
-
-#server_thread = Thread(target=main.run, daemon=True)
-#server_thread.start()
 
 llmModel = "gemma3:4b"
 imgPath = "images/frame.png"
