@@ -8,9 +8,10 @@ import os
 from werkzeug.utils import secure_filename
 
 import imageRecognition
+import ollama
 
 app = Flask(__name__)
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'server/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/upload', methods=['POST'])
@@ -31,9 +32,18 @@ def upload_image():
     # Save the image (you can process it here later)
     filename = secure_filename(file.filename)
     file.save(os.path.join(UPLOAD_FOLDER, filename))
-    output = imageRecognition.describeImageFromServer("uploads/" + filename)
+    print(len(ollama.list().model_dump()))
+    if (prompt == 0):
+        output = imageRecognition.describeImageFromServer(UPLOAD_FOLDER + "/" + filename)
+    else:
+        output = imageRecognition.extractTextFromServer(UPLOAD_FOLDER + "/" + filename)
+
+    if (output == False):
+        return jsonify({
+        "error": "Image received, model failure",
+        "prompt": f"prompt: {prompt}"
+    }), 400
     
-    # TODO: return text output
     return jsonify({
         "message": "Image received!",
         "text": output,
