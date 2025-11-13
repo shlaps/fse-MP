@@ -23,8 +23,10 @@ cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 #TODO: move to json file instead
 initPrompt = "Your response will be read aloud to a visually-impaired user. Only speak in second-person."
 endingPrompt = "Output exclusively your response to the user without any pretext. Do not use any special characters, except for common punctuation."
-descImg = "Output only one word. Describe the object in front of you."
-readTxt = "If you cannot reliably complete your task, output \"FAIL\" and nothing else. Extract any text from the photo to be spoken aloud to to the user. Prices short be shortened. ($5.00 becomes 5 dollars)"
+
+descImg = initPrompt + "Describe the scene in 1 sentence. Prioritize important details." + endingPrompt
+readTxt = "Extract any text from the photo to be spoken aloud to to the user. Prices short be shortened. ($5.00 becomes 5 dollars). If you cannot reliably complete your task, output \"FAIL\" and nothing else." + endingPrompt
+descObj = "Output only one word. Describe the object in front of you." + endingPrompt
 
 # func modified from https://github.com/ollama/ollama-python/issues/283 user: pnmartinez
 def describeImage(imgData, llmPrompt):
@@ -58,3 +60,7 @@ def extractTextFromServer(imgPath):
 def describeImageFromServer(imgPath):
     b64 = imgToB64(imgPath)
     return describeImage(b64, descImg)
+
+def describeObjectFromServer(imgPath):
+    b64 = imgToB64(imgPath)
+    return describeImage(b64, descObj)

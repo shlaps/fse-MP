@@ -23,21 +23,23 @@ def upload_image():
     if file.filename == '':
         return jsonify({"error": "No selected file"}), 400
     prompt = None
-    if 'prompt' not in request.files:
+    if 'prompt' not in request.headers:
         prompt = 0
     else:
-        prompt = request.files["prompt"]
+        prompt = request.headers["prompt"]
+
     
     
     # Save the image (you can process it here later)
-    filename = secure_filename(file.filename)
+    filename = file.filename + "." + request.headers["imgFormat"] #secure_filename doesnt work anymore idk why
     file.save(os.path.join(UPLOAD_FOLDER, filename))
     print(len(ollama.list().model_dump()))
-    if (prompt == 0):
-        output = imageRecognition.describeImageFromServer(UPLOAD_FOLDER + "/" + filename)
-    else:
+    if (prompt == "1"):
+        output = imageRecognition.describeObjectFromServer(UPLOAD_FOLDER + "/" + filename)
+    elif (prompt == "2"):
         output = imageRecognition.extractTextFromServer(UPLOAD_FOLDER + "/" + filename)
-
+    else:
+        output = imageRecognition.describeImageFromServer(UPLOAD_FOLDER + "/" + filename)
     if (output == False):
         return jsonify({
         "error": "Image received, model failure",
