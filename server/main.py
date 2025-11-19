@@ -33,13 +33,15 @@ def upload_image():
     # Save the image (you can process it here later)
     filename = file.filename + "." + request.headers["imgFormat"] #secure_filename doesnt work anymore idk why
     file.save(os.path.join(UPLOAD_FOLDER, filename))
-    print(len(ollama.list().model_dump()))
+    print(request.headers["prompt"])
     if (prompt == "1"):
-        output = imageRecognition.describeObjectFromServer(UPLOAD_FOLDER + "/" + filename)
+        dist = request.headers["dist"]
+        output = imageRecognition.describeObjectFromServer(UPLOAD_FOLDER + "/" + filename, dist) #ultrasonic
     elif (prompt == "2"):
-        output = imageRecognition.extractTextFromServer(UPLOAD_FOLDER + "/" + filename)
+        output = imageRecognition.extractTextFromServer(UPLOAD_FOLDER + "/" + filename) # 
     else:
         output = imageRecognition.describeImageFromServer(UPLOAD_FOLDER + "/" + filename)
+
     if (output == False):
         return jsonify({
         "error": "Image received, model failure",

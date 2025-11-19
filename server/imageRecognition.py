@@ -26,7 +26,7 @@ endingPrompt = "Output exclusively your response to the user without any pretext
 
 descImg = initPrompt + "Describe the scene in 1 sentence. Prioritize important details." + endingPrompt
 readTxt = "Extract any text from the photo to be spoken aloud to to the user. Prices short be shortened. ($5.00 becomes 5 dollars). If you cannot reliably complete your task, output \"FAIL\" and nothing else." + endingPrompt
-descObj = "Output only one word. Describe the object in front of you." + endingPrompt
+descObj = "Describe the object or person towards the center of the camera. Output only one word." + endingPrompt
 
 # func modified from https://github.com/ollama/ollama-python/issues/283 user: pnmartinez
 def describeImage(imgData, llmPrompt):
@@ -61,6 +61,6 @@ def describeImageFromServer(imgPath):
     b64 = imgToB64(imgPath)
     return describeImage(b64, descImg)
 
-def describeObjectFromServer(imgPath):
+def describeObjectFromServer(imgPath, dist):
     b64 = imgToB64(imgPath)
     return describeImage(b64, descObj)
