@@ -47,6 +47,7 @@ def upload_image():
     print(request.headers["prompt"])
     
     #get AI description based on prompt from request header
+    # also not written by ai!
     if (prompt == "1"):
         #get distance from request header. noot used and never fed to the AI
         dist = request.headers["dist"] 

@@ -1,4 +1,4 @@
-# FSE100-Project
+# FSE-100: the iStick
 
 Most of this code was written by me, with a few exceptions noted in the code.
 My group members assisted with a LOT of the implementation.
@@ -25,6 +25,10 @@ The client directory contains the code for the raspberry Pi. This is responsible
 *   `imageCapture.py`: This file contains the code responsible for capturing images from a camera.
 *   `Main.py`: Handles sending images and other important data to the webserver.
 *   `images/`: This directory stores captured images that are sent to the server for processing.
+
+## Button Test Directory
+
+Experiemental fix to the button input system. Not implemented in the final design due to time constraints.
 
 ## Overall System
 
