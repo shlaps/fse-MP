@@ -1,6 +1,10 @@
-# Project README
+# FSE100-Project
+
+Most of this code was written by me, with a few exceptions noted in the code.
+My class group assisted with a LOT of the implementation.
 
 This project consists of a server and a client component, both written in Python.
+The code is essentially fully commentated, if you'd like to take a closer look.
 
 ## Server Directory
 
@@ -26,4 +30,4 @@ The client directory contains the code for the raspberry Pi. This is responsible
 
 The client runs on a Raspberry Pi, which is connected to a camera. The client uses the `imageCapture.py` module to capture images from the camera. 
 These captured images are then sent to the server using the **CLIENTS** `Main.py` file. 
-The server then processes the image, using an AI model hosted on a laptop. The AI response is then sent back to the client, which reads the text aloud.
+The server then processes the image, using an AI model hosted on a laptop. The AI response is then sent back to the client, which the client reads aloud.
