@@ -1,7 +1,7 @@
 # FSE100-Project
 
 Most of this code was written by me, with a few exceptions noted in the code.
-My class group assisted with a LOT of the implementation.
+My group members assisted with a LOT of the implementation.
 
 This project consists of a server and a client component, both written in Python.
 The code is essentially fully commentated, if you'd like to take a closer look.
